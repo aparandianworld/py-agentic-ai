@@ -1,4 +1,5 @@
 from agent import client, DEFAULT_MODEL
+from tools import web_search
 
 
 def test_connection():
@@ -20,5 +21,16 @@ def test_connection():
         print(f"Error testing connection: {e}")
 
 
+def test_web_search():
+    print("Testing web search tool...\n")
+    response = web_search("What is the latest advancement on Agentic AI?", 1)
+    if response:
+        print(response)
+    else:
+        print("No response from web search tool.")
+
+
 if __name__ == "__main__":
     test_connection()
+    print("\n" + "-" * 25 + "\n")
+    test_web_search()
