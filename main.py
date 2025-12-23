@@ -1,5 +1,6 @@
 from agent import client, DEFAULT_MODEL
 from tools import web_search
+from agent import run_agent
 
 
 def test_connection():
@@ -30,7 +31,23 @@ def test_web_search():
         print("No response from web search tool.")
 
 
+def main():
+    print("Research agent starting...")
+
+    while True:
+        query = input("Enter your query (or 'quit' or 'exit' to exit): ")
+        if query.lower() in ["quit", "exit"]:
+            print("Goodbye!")
+            break
+        try:
+            answer = run_agent(query)
+            print(f"Agent response: {answer}\n")
+        except Exception as e:
+            print(f"Error running agent: {e}\n")
+            print("Please try again.\n")
+        finally:
+            print("-" * 50 + "\n")
+
+
 if __name__ == "__main__":
-    test_connection()
-    print("\n" + "-" * 25 + "\n")
-    test_web_search()
+    main()
